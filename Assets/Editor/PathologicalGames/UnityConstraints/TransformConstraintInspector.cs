@@ -39,6 +39,7 @@ namespace PathologicalGames
             }
             GUILayout.EndHorizontal();
 
+			script.outputPosOffset = EditorGUILayout.Vector3Field ("Offset", script.outputPosOffset);
 
             GUILayout.BeginHorizontal();
             script.constrainRotation = EditorGUILayout.Toggle("Rotation", script.constrainRotation);

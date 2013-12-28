@@ -39,6 +39,11 @@ namespace PathologicalGames
         /// </summary>
         public bool outputPosZ = true;
 
+		/// <summary>
+		/// Offsets the target position.
+		/// </summary>
+		public Vector3 outputPosOffset = Vector3.zero;
+
         /// <summary>
         /// Option to match the target's rotation
         /// </summary>
@@ -93,9 +98,9 @@ namespace PathologicalGames
                 this.pos = this.xform.position;
 
                 // Output only if wanted
-                if (this.outputPosX) this.pos.x = this.target.position.x;
-                if (this.outputPosY) this.pos.y = this.target.position.y;
-                if (this.outputPosZ) this.pos.z = this.target.position.z;
+				if (this.outputPosX) this.pos.x = this.target.position.x + outputPosOffset.x;
+				if (this.outputPosY) this.pos.y = this.target.position.y + outputPosOffset.y;
+				if (this.outputPosZ) this.pos.z = this.target.position.z + outputPosOffset.z;
 
                 this.xform.position = pos;
             }
