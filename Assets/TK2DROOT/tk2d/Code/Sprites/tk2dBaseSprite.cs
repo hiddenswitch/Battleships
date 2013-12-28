@@ -62,7 +62,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
 	public BoxCollider2D boxCollider2D = null;
 	public List<PolygonCollider2D> polygonCollider2D = new List<PolygonCollider2D>(1);
-	public List<EdgeCollider2D> edgeCollider2D = new List<EdgeCollider2D>(1);
+	public List<PolygonCollider2D> edgeCollider2D = new List<PolygonCollider2D>(1);
 #endif
 	
 	/// <summary>
@@ -581,7 +581,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 					}
 					// Turn off existing edge colliders
 					if (edgeCollider2D.Count > 0) {
-						foreach (EdgeCollider2D edgeCollider in edgeCollider2D) {
+						foreach (PolygonCollider2D edgeCollider in edgeCollider2D) {
 							if (edgeCollider != null && edgeCollider.enabled) {
 								edgeCollider.enabled = false;
 							}
@@ -639,11 +639,11 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 					int numEdgeColliders = sprite.edgeCollider2D.Length;
 					for (int i = 0; i < edgeCollider2D.Count; ++i) {
 						if (edgeCollider2D[i] == null) {
-							edgeCollider2D[i] = gameObject.AddComponent<EdgeCollider2D>();
+							edgeCollider2D[i] = gameObject.AddComponent<PolygonCollider2D>();
 						}
 					}
 					while (edgeCollider2D.Count < numEdgeColliders) {
-						edgeCollider2D.Add( gameObject.AddComponent<EdgeCollider2D>() );
+						edgeCollider2D.Add( gameObject.AddComponent<PolygonCollider2D>() );
 					}
 					for (int i = 0; i < numEdgeColliders; ++i) {
 						if (!edgeCollider2D[i].enabled) {
@@ -682,7 +682,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 					}
 					// Turn off existing edge colliders
 					if (edgeCollider2D.Count > 0) {
-						foreach (EdgeCollider2D edgeCollider in edgeCollider2D) {
+						foreach (PolygonCollider2D edgeCollider in edgeCollider2D) {
 							if (edgeCollider != null && edgeCollider.enabled) {
 								edgeCollider.enabled = false;
 							}
@@ -791,7 +791,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
 		boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
 		edgeCollider2D.Clear();
-		edgeCollider2D.AddRange( gameObject.GetComponents<EdgeCollider2D>() );
+		edgeCollider2D.AddRange( gameObject.GetComponents<PolygonCollider2D>() );
 		polygonCollider2D.Clear();
 		polygonCollider2D.AddRange( gameObject.GetComponents<PolygonCollider2D>() );
 #endif
@@ -809,7 +809,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 				}
 			}
 			polygonCollider2D.Clear();
-			foreach (EdgeCollider2D e2d in edgeCollider2D) {
+			foreach (PolygonCollider2D e2d in edgeCollider2D) {
 				if (e2d != null) {
 					DestroyImmediate(e2d, true);
 				}
@@ -853,7 +853,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 				}
 			}
 			polygonCollider2D.Clear();
-			foreach (EdgeCollider2D e2d in edgeCollider2D) {
+			foreach (PolygonCollider2D e2d in edgeCollider2D) {
 				if (e2d != null) {
 					DestroyImmediate(e2d, true);
 				}
@@ -880,7 +880,7 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 			boxCollider2D.sharedMaterial = physicsMaterial2D;
 		}
 
-		foreach (EdgeCollider2D ec in edgeCollider2D) {
+		foreach (PolygonCollider2D ec in edgeCollider2D) {
 			ec.isTrigger = isTrigger;
 			ec.sharedMaterial = physicsMaterial2D;
 		}

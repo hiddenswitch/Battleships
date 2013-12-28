@@ -668,9 +668,9 @@ public class tk2dStaticSpriteBatcher : MonoBehaviour, tk2dRuntime.ISpriteCollect
 		}
 
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
-		EdgeCollider2D[] edgeColliders = GetComponents<EdgeCollider2D>();
+		PolygonCollider2D[] edgeColliders = GetComponents<PolygonCollider2D>();
 		if (!CheckFlag(Flags.GenerateCollider)) {
-			foreach (EdgeCollider2D ec in edgeColliders) {
+			foreach (PolygonCollider2D ec in edgeColliders) {
 	#if UNITY_EDITOR
 					DestroyImmediate(ec);
 	#else
@@ -763,7 +763,7 @@ public class tk2dStaticSpriteBatcher : MonoBehaviour, tk2dRuntime.ISpriteCollect
 			}			
 
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
-			foreach (EdgeCollider2D ec in edgeColliders) {
+			foreach (PolygonCollider2D ec in edgeColliders) {
 #if UNITY_EDITOR
 				DestroyImmediate(ec);
 #else
@@ -778,7 +778,7 @@ public class tk2dStaticSpriteBatcher : MonoBehaviour, tk2dRuntime.ISpriteCollect
 		// Sanitize for chosen physics engine
 		if (physics3D) {
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
-			foreach (EdgeCollider2D ec in edgeColliders) {
+			foreach (PolygonCollider2D ec in edgeColliders) {
 #if UNITY_EDITOR
 				DestroyImmediate(ec);
 #else
@@ -816,7 +816,7 @@ public class tk2dStaticSpriteBatcher : MonoBehaviour, tk2dRuntime.ISpriteCollect
 	}
 
 #if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
-	void BuildPhysicsMesh2D(EdgeCollider2D[] edgeColliders, int numEdgeColliders) {
+	void BuildPhysicsMesh2D(PolygonCollider2D[] edgeColliders, int numEdgeColliders) {
 		
 		// Delete surplus
 		for (int i = numEdgeColliders; i < edgeColliders.Length; ++i) {
@@ -831,13 +831,13 @@ public class tk2dStaticSpriteBatcher : MonoBehaviour, tk2dRuntime.ISpriteCollect
 
 		// Fill in missing, only do this if necessary
 		if (numEdgeColliders > edgeColliders.Length) {
-			EdgeCollider2D[] allEdgeColliders = new EdgeCollider2D[numEdgeColliders];
+			PolygonCollider2D[] allEdgeColliders = new PolygonCollider2D[numEdgeColliders];
 			int numToFill = Mathf.Min(numEdgeColliders, edgeColliders.Length);
 			for (int i = 0; i < numToFill; ++i) {
 				allEdgeColliders[i] = edgeColliders[i];
 			}
 			for (int i = numToFill; i < numEdgeColliders; ++i) {
-				allEdgeColliders[i] = gameObject.AddComponent<EdgeCollider2D>();
+				allEdgeColliders[i] = gameObject.AddComponent<PolygonCollider2D>();
 			}
 			edgeColliders = allEdgeColliders;
 		}
