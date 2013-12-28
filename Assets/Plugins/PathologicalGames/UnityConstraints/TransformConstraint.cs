@@ -89,7 +89,9 @@ namespace PathologicalGames
 
             if (this.constrainRotation)
             {
-                this.xform.rotation = this.target.rotation;
+				this.xform.position += outputPosOffset;
+				this.xform.rotation = this.target.rotation;
+				this.xform.position -= outputPosOffset;
                 UnityConstraints.MaskOutputRotations(this.xform, this.output);
             }
 
