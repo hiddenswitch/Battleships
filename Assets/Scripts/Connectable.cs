@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Reticle : SpaceObject {
+public class Connectable : SpaceObject {
 
 	// Use this for initialization
 	void Start () {

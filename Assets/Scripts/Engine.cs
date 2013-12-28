@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Engine : MonoBehaviour
+public class Engine : SpaceObject
 {
 	public float deltaV;
 	public float deltaW;
@@ -11,7 +11,11 @@ public class Engine : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+	    // Find a ship to control
+	    if (rigidbody2d == null)
+	    {
+	        rigidbody2d = FindShip().GetComponent<Rigidbody2D>();
+	    }
 	}
 	// Update is called once per frame
 	void Update ()
