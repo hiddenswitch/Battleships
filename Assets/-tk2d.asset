@@ -7232,3 +7232,16 @@ MonoBehaviour:
     loadable: 0
     assetName: 
     version: 3
+  - name: UI Sprite Collection
+    spriteCollectionGUID: af2b47c4d10764a908cd22c7b462b962
+    spriteCollectionDataGUID: ef160f06bd09c4e318906802e3e0ed67
+    spriteNames:
+    - Reticle
+    spriteTextureGUIDs:
+    - adc2fa3a061244024b4951105bb77bf8
+    spriteTextureTimeStamps:
+    - 1388172610
+    managedSpriteCollection: 0
+    loadable: 0
+    assetName: 
+    version: 3
