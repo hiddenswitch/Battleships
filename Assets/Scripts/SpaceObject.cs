@@ -15,12 +15,6 @@ public class SpaceObject : MonoBehaviour {
 
     public Ship FindShip()
     {
-        var parent = transform.parent;
-        Ship ship = null;
-        while (parent != null && (ship = parent.gameObject.GetComponent<Ship>()) == null)
-        {
-            parent = parent.parent;
-        }
-        return ship;
+        return this.GetComponentInParents<Ship>();
     }
 }
